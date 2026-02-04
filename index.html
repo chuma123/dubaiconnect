@@ -24,6 +24,18 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "YOUFfnjPppL8roDtvkuB",
+      });
+   })();
+</script>
+
 </head>
 
 <body>
@@ -153,6 +165,24 @@
 
     <!-- end slider section -->
   </div>
+  <!-- ADDED: CONTACT SECTION -->
+  <section class="contact_section layout_padding">
+    <div class="container">
+      <div class="custom_heading">
+        <h3>Contact Us</h3>
+        <hr>
+      </div>
+
+      <form id="contact-form">
+        <input type="text" name="user_name" placeholder="Your Name" required class="form-control mb-3">
+        <input type="email" name="user_email" placeholder="Your Email" required class="form-control mb-3">
+        <textarea name="message" placeholder="Your Message" required class="form-control mb-3" rows="5"></textarea>
+        <button type="submit" onclick="sendMail()">Send</button>
+      </form>
+
+      <p id="form-status" style="margin-top:10px;"></p>
+    </div>
+  </section>
 
   <!-- category section -->
 
@@ -707,8 +737,7 @@ Fashion from Dubai made for those who move with confidence and dress with purpos
     </div>
   </section>
   <!-- end client section -->
-
-
+    
   <!-- footer section -->
   <footer class="footer_section layout_padding2">
     <div class="social_container">
@@ -756,9 +785,44 @@ Fashion from Dubai made for those who move with confidence and dress with purpos
 
     }
   </script>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
 
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <script>
+    (function () {
+      emailjs.init("FfnjPppL8roDtvkuB");
+    })();
+
+    document.getElementById("contact-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      emailjs.sendForm(
+        "service_e99fqjb",
+        "template_giatwjd",
+        this
+      ).then(
+        function () {
+          document.getElementById("form-status").innerText = "Message sent successfully!";
+        },
+        function () {
+          document.getElementById("form-status").innerText = "Message failed. Try again.";
+        }
+      );
+
+      this.reset();
+    });
+
+    function openNav() {
+      document.getElementById("myNav").classList.toggle("menu_width");
+      document
+        .querySelector(".custom_menu-btn")
+        .classList.toggle("menu_btn-style");
+    }
+    
 
 
-</html>
 
+  </script>
+  
